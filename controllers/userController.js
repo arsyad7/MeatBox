@@ -1,4 +1,5 @@
 const { User } = require('../models/index');
+const { checkPass } = require('../helpers/hashPass');
 
 class userController {
     // Register
@@ -25,6 +26,7 @@ class userController {
             })
     }
 
+    // Login
     static loginForm(req, res) {
         res.render('login')
     }
@@ -35,21 +37,22 @@ class userController {
             password: req.body.password,
         };
 
-        User.findOne({
-            where: {
-                username: data.username
-            }
-        })
-        .then(result => {
-            if (result.password === data.password) {
-                res.redirect(`/products/${data.username}`)
-            } else {
-                res.send('password salah')
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
+        User
+            .findOne({
+                where: {
+                    username: data.username
+                }
+            })
+            .then(result => {
+                if(checkPass(data.password, result.password)) {
+                    res.redirect(`/products/${data.username}`);
+                } else {
+                    res.send('password salah');
+                }
+            })
+            .catch(err => {
+                res.send(err);
+            })
     }
 }
 
