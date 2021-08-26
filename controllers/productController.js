@@ -49,7 +49,6 @@ class productRouter {
 
     static keranjang(req, res) {
         const username = req.params.user;
-        let totalPrice = 0;
         let newData = []
 
         User
@@ -72,21 +71,11 @@ class productRouter {
                     })
             })
             .then(data => {
-                // res.send(data)
-                data.forEach(el => {
-                    totalPrice += el.totalHarga;
-                });
-
-                // console.log(totalPrice, newData);
-                res.render('keranjang', {newData, totalPrice, username})
-                // return Product.findByPk(el.ProductId)     
+                return Product.getTotalPrice(data)
             })
-            // .then(data => {
-            //     data.forEach(el => {
-            //         productList.push(el.name)
-            //     })
-            //     res.send(data)
-            // })
+            .then(totalPrice=> {
+                res.render('keranjang', {newData, totalPrice, username}) 
+            })
             .catch(err => res.send(err))
     }
 
@@ -96,7 +85,7 @@ class productRouter {
 
         UserProduct
             .destroy({
-                where: {ProductId: id}
+                where: {ProductId: id}, 
             })
             .then(_ => {
                 res.redirect(`/products/${username}/keranjang`)
