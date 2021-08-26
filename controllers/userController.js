@@ -13,13 +13,14 @@ class userController {
             username: req.body.username,
             phone_number: req.body.phone_number,
             password: req.body.password,
-            alamat: req.body.alamat
+            alamat: req.body.alamat,
+            email: req.body.email
         };
 
         User
             .create(data)
             .then(_ => {
-                res.redirect('/');
+                res.redirect('/users/login');
             })
             .catch(err => {
                 res.send(err);

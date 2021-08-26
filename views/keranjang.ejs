@@ -30,30 +30,32 @@
     </nav>
 
     <div class="container">
-      <h1 class="text-center">Hello <%= username %> </h1>
+      <h1 class="text-center">Belanjaan <%= username %> </h1>
 
       <table class="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Stock</th>
             <th scope="col">Price</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <% data.forEach(el => { %>
+          <% newData.forEach(el => { %>
            <tr>
              <td><%= el.name %> </td>
-             <td><%= el.stock %> </td>
              <td><%= el.price %> </td>
              <td>
-              <button type="button" class="btn btn-success"><a style="color: white;" href="/products/<%= username %>/buy/<%= el.id %>">Buy</a></button>
+              <button type="button" class="btn btn-danger"><a style="color: white;" href="/products/<%= username %>/delete/<%= el.id %>">remove</a></button>
              </td>
            </tr>
           <% }) %>
         </tbody>
       </table>
+      <div>
+          <h4>Total Price : <%= totalPrice %> </h4>
+          <button type="button" class="btn btn-primary"><a style="color: white;" href="/products/<%= username %>/bayar">Bayar</a></button>
+      </div>
     </div>
 
 

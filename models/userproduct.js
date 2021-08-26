@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   UserProduct.init({
     UserId: DataTypes.INTEGER,
-    ProductId: DataTypes.INTEGER
+    ProductId: DataTypes.INTEGER,
+    totalHarga: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'UserProduct',

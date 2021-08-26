@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Ayam Utuh",
+        "stock": 100,
+        "price": 27000,
+        "type": "ayam"
+    },
+    {
+        "name": "Ayam Kampung Probiotik",
+        "stock": 100,
+        "price": 60000,
+        "type": "ayam"
+    },
+    {
+        "name": "Daging Sapi Giling 500gr",
+        "stock": 100,
+        "price": 50000,
+        "type": "sapi"
+    },
+    {
+        "name": "Daging Sapi Slice 500gr",
+        "stock": 100,
+        "price": 80000,
+        "type": "sapi"
+    },
+    {
+        "name": "Daging Sapi Rendang 500gr",
+        "stock": 100,
+        "price": 55000,
+        "type": "sapi"
+    },
+    {
+        "name": "Daging Sapi Khas Luar 500gr",
+        "stock": 100,
+        "price": 75000,
+        "type": "sapi"
+    },
+    {
+        "name": "Ikan Gurame 500gr",
+        "stock": 100,
+        "price": 35000,
+        "type": "ikan"
+    },
+    {
+        "name": "Ikan Kembung 500gr",
+        "stock": 100,
+        "price": 30000,
+        "type": "ikan"
+    },
+    {
+        "name": "Ikan Dori Fillet",
+        "stock": 50,
+        "price": 20000,
+        "type": "ikan"
+    },
+    {
+        "name": "Ikan Nila 500gr",
+        "stock": 45,
+        "price": 35000,
+        "type": "ikan"
+    }
+]

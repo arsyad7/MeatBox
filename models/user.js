@@ -20,12 +20,12 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     phone_number: DataTypes.STRING,
-    alamat: DataTypes.STRING
+    alamat: DataTypes.STRING,
+    email: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate(instance) {
         instance.password = hashPass(instance.password);
-        console.log(instance.password);
       }
     },
     sequelize,
