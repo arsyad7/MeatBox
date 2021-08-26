@@ -16,12 +16,54 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    phone_number: DataTypes.STRING,
-    alamat: DataTypes.STRING,
-    email: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Name Tidak Boleh Kosong'
+        }
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Username Tidak Boleh Kosong'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Password Tidak Boleh Kosong'
+        }
+      }
+    },
+    phone_number: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Phone Number Tidak Boleh Kosong'
+        }
+      }
+    },
+    alamat: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'AlamatTidak Boleh Kosong'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Email Tidak Boleh Kosong'
+        }
+      }
+    }
   }, {
     hooks: {
       beforeCreate(instance) {

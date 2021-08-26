@@ -10,10 +10,10 @@ const transporter = nodemailer.createTransport({
 
 function sendEmail(email) {
     const options = {
-        from: "ArsyadNich",
+        from: "'MeatBox' <no-reply@gmail.com>",
         to: email,
-        subject: "test 123",
-        text: "Hello sat"
+        subject: "Pesanan MeatBox",
+        text: "Pesanan Anda sedang dalam perjalanan"
     };
 
     transporter.sendMail(options, (err, info) => {

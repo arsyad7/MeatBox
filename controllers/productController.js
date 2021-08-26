@@ -98,10 +98,18 @@ class productRouter {
 
         User
             .findOne({
-                where: {username}
+                where: {username},
+                include: [Product]
             })
             .then(data => {
                 sendEmail(data.email)
+                return UserProduct.destroy({
+                    where: {UserId: data.id}
+                })
+            })
+            .then(_ => {
+                console.log('sampe sini');
+                res.redirect(`/products/${username}/keranjang`);
             })
             .catch(err => res.send(err))
     }

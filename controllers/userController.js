@@ -4,7 +4,15 @@ const { checkPass } = require('../helpers/hashPass');
 class userController {
     // Register
     static registerForm(req, res) {
-        res.render('register');
+        let errors = [];
+
+        if (req.query.error) {
+            errors = req.query.error.split(',');
+            res.render('register', {errors});
+        } else {
+            res.render('register', {errors});
+
+        }
     }
 
     static register(req, res) {
@@ -23,13 +31,20 @@ class userController {
                 res.redirect('/users/login');
             })
             .catch(err => {
-                res.send(err);
+                let errors = [];
+
+                err.errors.forEach(el => {
+                    errors.push(el.message);
+                });
+                res.redirect(`/users/register?error=${errors}`);
             })
     }
 
     // Login
     static loginForm(req, res) {
-        res.render('login')
+        let error = req.query.error;
+
+        res.render('login', {error});
     }
 
     static login(req, res) {
@@ -38,22 +53,26 @@ class userController {
             password: req.body.password,
         };
 
-        User
-            .findOne({
-                where: {
-                    username: data.username
-                }
-            })
-            .then(result => {
-                if(checkPass(data.password, result.password)) {
-                    res.redirect(`/products/${data.username}`);
-                } else {
-                    res.send('password salah');
-                }
-            })
-            .catch(err => {
-                res.send(err);
-            })
+        if (req.body.username === '') {
+            res.redirect('/users/login?error=Username tidak terdaftar');
+        } else {
+            User
+                .findOne({
+                    where: {
+                        username: data.username
+                    }
+                })
+                .then(result => {
+                    if(checkPass(data.password, result.password)) {
+                        res.redirect(`/products/${data.username}`);
+                    } else {
+                        res.redirect('/users/login?error=Password salah');
+                    }
+                })
+                .catch(err => {
+                    res.redirect('/users/login?error=Username atau Password salah');
+                })
+        }
     }
 }
 
