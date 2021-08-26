@@ -8,26 +8,30 @@
 </head>
 <body>
     <center>
+      <h1>Register Account</h1>
+      <% errors.forEach(el => { %>
+        <p style="color: red;"><%= el %> </p>
+      <% }) %>
         <form action="/users/register" method="POST">
           
             <div class="container">
               <label for="uname"><b>Name</b></label>
-              <input type="text" placeholder="Enter Name" name="name" required><br><br>
+              <input type="text" placeholder="Enter Name" name="name"><br><br>
 
               <label for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="username" required><br><br>
+              <input type="text" placeholder="Enter Username" name="username"><br><br>
 
               <label for="uname"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="email" required><br><br>
+              <input type="text" placeholder="Enter Email" name="email"><br><br>
 
               <label for="uname"><b>Phone Number</b></label>
-              <input type="text" placeholder="Enter Phone Number" name="phone_number" required><br><br>
+              <input type="text" placeholder="Enter Phone Number" name="phone_number"><br><br>
 
               <label for="uname"><b>Address</b></label>
-              <input type="text" placeholder="Enter Address" name="alamat" required><br><br>
+              <input type="text" placeholder="Enter Address" name="alamat"><br><br>
           
               <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="password" required><br><br>
+              <input type="password" placeholder="Enter Password" name="password"><br><br>
           
               <button type="submit">Register</button>
             </div><br>
