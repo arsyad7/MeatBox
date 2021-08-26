@@ -71,10 +71,11 @@ class productRouter {
                     })
             })
             .then(data => {
-                return Product.getTotalPrice(data)
-            })
-            .then(totalPrice=> {
-                res.render('keranjang', {newData, totalPrice, username}) 
+                data.forEach(el => {
+                    totalPrice += el.totalHarga;
+                });
+
+                res.render('keranjang', {newData, totalPrice, username})
             })
             .catch(err => res.send(err))
     }
@@ -84,13 +85,22 @@ class productRouter {
         const id = req.params.id;
 
         UserProduct
-            .destroy({
-                where: {ProductId: id}, 
+            .findAll({
+                where: {ProductId: id}
+            })
+            .then(data => {
+                return Product.increment(['stock'], {by: data.length, where: {id}})
             })
             .then(_ => {
-                res.redirect(`/products/${username}/keranjang`)
+                return UserProduct
+                    .destroy({
+                        where: {ProductId: id}
+                    })
             })
-            .catch(err => res.send(err))
+            .then(_ => {
+                res.redirect(`/products/${username}/keranjang`);
+            })
+            .catch(err => console.log(err))
     }
 
     static bayar(req, res) {
@@ -108,7 +118,6 @@ class productRouter {
                 })
             })
             .then(_ => {
-                console.log('sampe sini');
                 res.redirect(`/products/${username}/keranjang`);
             })
             .catch(err => res.send(err))
