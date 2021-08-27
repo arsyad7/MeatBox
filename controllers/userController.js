@@ -64,6 +64,9 @@ class userController {
                 })
                 .then(result => {
                     if(checkPass(data.password, result.password)) {
+                        req.session.isLogin = true;
+                        req.session.email = result.email;
+                        req.session.userIs = result.id;
                         res.redirect(`/products/${data.username}`);
                     } else {
                         res.redirect('/users/login?error=Password salah');
@@ -73,6 +76,11 @@ class userController {
                     res.redirect('/users/login?error=Username atau Password salah');
                 })
         }
+    }
+
+    static logout(req, res) {
+        req.session.destroy()
+        res.redirect('/users/login')
     }
 }
 
