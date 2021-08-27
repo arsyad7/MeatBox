@@ -49,6 +49,7 @@ class productRouter {
 
     static keranjang(req, res) {
         const username = req.params.user;
+        let totalPrice = 0;
         let newData = []
 
         User

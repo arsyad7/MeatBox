@@ -80,7 +80,7 @@ class userController {
 
     static logout(req, res) {
         req.session.destroy()
-        res.redirect('/users/login')
+        res.redirect('/')
     }
 }
 
